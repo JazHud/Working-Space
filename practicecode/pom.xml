@@ -15,5 +15,10 @@
   		<artifactId>maven-compiler-plugin</artifactId>
   		<version>3.8.0</version>
   	</dependency>
+  	<dependency>
+  		<groupId>com.organization.mvcproject</groupId>
+  		<artifactId>mgl-automation-testing</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

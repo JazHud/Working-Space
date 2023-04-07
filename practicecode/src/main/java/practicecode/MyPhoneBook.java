@@ -24,9 +24,11 @@ import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
-
+import java.util.Set;
+import java.util.HashSet;
 
 public class MyPhoneBook {
 	
@@ -69,9 +71,12 @@ public class MyPhoneBook {
 		
 	}
 
-	public static void writeNewPeep(List<Person> peeps) {
+	public static <People> void writeNewPeep(List<Person> peeps) {
 		try (FileWriter fw = new FileWriter(filePath, true);
 			PrintWriter pw = new PrintWriter(fw);){
+			
+			Set<People> hashPeeps = new HashSet<People>();
+			
 		for(Person peep: peeps) {
 			pw.write("\n" + peep);
 		}
@@ -124,20 +129,12 @@ public class MyPhoneBook {
 		ogPeeps.add(new Person("Percy", "1478525"));
 		
 		writeNewPeep(peeps);
-//		for(Person peep: peeps) {
-//			System.out.println("\n" + peep);
-//		}
+		
+		peeps.add(conFive);
+
+		writeNewPeep(peeps);
 		writeNewPeep(ogPeeps);
 		
-//		System.out.println("My arrayList: " + peeps);
-//		
-//		for(int i = 0; i < peeps.size(); i++) {
-//			System.out.println(peeps.get(i));
-//		}
-		
-//		System.out.println(Arrays.toString(addPerson(peeps, conFive)));
-		
-	
-		
-	}		
+	}	
 }
+
