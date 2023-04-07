@@ -24,6 +24,7 @@ import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -65,6 +66,19 @@ public class MyPhoneBook {
 			e.printStackTrace();
 		}
 	
+		
+	}
+
+	public static void writeNewPeep(List<Person> peeps) {
+		try (FileWriter fw = new FileWriter(filePath, true);
+			PrintWriter pw = new PrintWriter(fw);){
+		for(Person peep: peeps) {
+			pw.write("\n" + peep);
+		}
+		}catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		try (Reader reader = new FileReader("files/addressbookfile.txt")) {
 			char [] buf = new char[16];
 			int read = reader.read(buf);
@@ -79,24 +93,11 @@ public class MyPhoneBook {
 		}
 	}
 
-	public static void writeNewPeep(ArrayList<Person> peeps) {
-		try {
-			FileWriter fw = new FileWriter(filePath);
-			PrintWriter pw = new PrintWriter(fw);
-		for (Person peep: peeps) {
-			pw.write("\n" + peep);
-		}
-		pw.close();
-		}catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 
 		
 
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) {
 		createFile();
 		Person oneCon = new Person("Jaz", "1234567");
 		Person conTwo = new Person("Giz", "7654321");
@@ -117,13 +118,22 @@ public class MyPhoneBook {
 		peeps.add(conThree);
 		peeps.add(conFour);
 		
+		ArrayList<Person> ogPeeps = new ArrayList<>();
+		ogPeeps.add(new Person("Becca", "1234565"));
+		ogPeeps.add(new Person("Cassie", "6543212"));
+		ogPeeps.add(new Person("Percy", "1478525"));
+		
 		writeNewPeep(peeps);
+//		for(Person peep: peeps) {
+//			System.out.println("\n" + peep);
+//		}
+		writeNewPeep(ogPeeps);
 		
-		System.out.println("My arrayList: " + peeps);
-		
-		for(int i = 0; i < peeps.size(); i++) {
-			System.out.println(peeps.get(i));
-		}
+//		System.out.println("My arrayList: " + peeps);
+//		
+//		for(int i = 0; i < peeps.size(); i++) {
+//			System.out.println(peeps.get(i));
+//		}
 		
 //		System.out.println(Arrays.toString(addPerson(peeps, conFive)));
 		
